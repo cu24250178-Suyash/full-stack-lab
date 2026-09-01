@@ -1,0 +1,47 @@
+import { useState } from "react";
+
+function LiveSearchFilter() {
+  const names = [
+    "Amit",
+    "Rahul",
+    "Priya",
+    "Neha",
+    "Rohit",
+    "Anjali",
+    "Vikas",
+    "Sneha",
+    "Arjun",
+    "Pooja"
+  ];
+
+  const [search, setSearch] = useState("");
+
+  const filteredNames = names.filter((name) =>
+    name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h2>Live Search</h2>
+
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search names..."
+      />
+
+      {filteredNames.length > 0 ? (
+        <ul>
+          {filteredNames.map((name, index) => (
+            <li key={index}>{name}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No results found</p>
+      )}
+    </div>
+  );
+}
+
+export default LiveSearchFilter;
